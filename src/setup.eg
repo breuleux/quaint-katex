@@ -1,0 +1,17 @@
+
+require:
+   inquirer-promise as inq
+   chalk
+
+
+async quaint-setup(config, instructions) =
+   url = "https://github.com/breuleux/quaint-katex"
+   print 'Plugin documentation: {chalk.bold.cyan(url)}'
+
+   data = config.plugins["katex"] or= {=}
+
+   ;; Configure the plugin using inq.input, inq.confirm, inq.list, and so on.
+   ;; data.thing = await inq.input("Something", {default = "whatever"})
+
+
+provide = quaint-setup

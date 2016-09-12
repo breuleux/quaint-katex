@@ -1,0 +1,57 @@
+
+require:
+   path
+   katex
+
+install(@, options) =
+
+   @register-resources with {
+      "katex/katex.min.css" => {
+         path = path.join{__dirname, "../assets/katex.min.css"}
+         contents = true
+         type = .css
+         method = .head
+      }
+   }
+
+   @register-rules with {
+
+      "$+ \\math"{engine, {=> math}} =
+         raw % katex.render-to-string{math.shed{}.raw{}}
+
+      "\\maybe\\descr $$ \\math"{engine, {=> descr, => math}} =
+         ;; The "X" guarantees that type will not be a class or id
+         {var type, *cls} = ["X" + descr.raw{}.trim{}].split{R"(?=[.#])"}
+         type = type[1..] or "aligned" ;; we strip the "X" out here
+         parts = math.statements{} each stmt ->
+            match stmt.extract{"* \\nonum", "\\maybe\\tag # \\num", "\\other"}:
+               {=> nonum} ->
+                  '{nonum.raw{}}\\\\'
+               {=> tag >> tag.raw{}.trim{}, => num} ->
+                  match tag:
+                     "" -> num.raw{} + "\\\\"
+                     else -> '{num.raw{}}\\label\{{tag}\}\\tag\{{tag}\}\\\\'
+               {=> other} ->
+                  other.raw{}
+         contents = parts.join{"\n"}.replace{R"\\\\$", ""}
+         value =
+            if type === 'raw':
+               contents
+            else:
+               '\\begin\{{type}\}\n{contents}\n\\end\{{type}\}'
+         core = raw % katex.render-to-string{value, display-mode = true}
+         if cls.length:
+            ENode{{.div, *cls}, {=}, core}
+         else:
+            core
+
+   }
+
+
+main(*match) =
+   {@, options = {=}} when @is-quaint-engine ->
+      install(@, options)
+   {options = {=}} ->
+      {@} -> main(@, options)
+
+provide = main

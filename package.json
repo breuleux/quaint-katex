@@ -1,0 +1,35 @@
+{
+  "name": "quaint-katex",
+  "description": "Katex support for Quaint",
+  "version": "0.0.0",
+  "format": "cjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/breuleux/quaint-katex"
+  },
+  "keywords": [
+    "quaint",
+    "quaint-plugin"
+  ],
+  "author": "Olivier Breuleux",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "earlgrey-runtime": ">=0.0.11",
+    "inquirer-promise": ">=0.0.3",
+    "katex": "^0.6.0"
+  },
+  "devDependencies": {
+    "earlgrey": ">=0.0.13",
+    "mocha": "^2.2.1",
+    "quaint": ">=0.0.15",
+    "earl-mocha": ">=0.0.3"
+  },
+  "scripts": {
+    "refresh": "earl compile -5vso lib/ src/",
+    "compile": "earl compile -5rvso lib/ src/",
+    "prepublish": "npm run compile",
+    "test": "mocha"
+  }
+}
