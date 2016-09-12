@@ -1,7 +1,7 @@
 {
   "name": "quaint-katex",
   "description": "Katex support for Quaint",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "format": "cjs",
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
   "main": "./lib/index.js",
   "dependencies": {
     "chalk": "^1.1.1",
-    "earlgrey-runtime": ">=0.0.11",
+    "earlgrey-runtime": ">=0.0.13",
     "inquirer-promise": ">=0.0.3",
     "katex": "^0.6.0"
   },
