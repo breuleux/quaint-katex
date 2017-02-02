@@ -16,15 +16,14 @@
   "main": "./lib/index.js",
   "dependencies": {
     "chalk": "^1.1.1",
-    "earlgrey-runtime": ">=0.0.13",
-    "inquirer-promise": ">=0.0.3",
-    "katex": "^0.6.0"
+    "earlgrey-runtime": "^0.1.0",
+    "katex": "^0.7.1"
   },
   "devDependencies": {
-    "earlgrey": ">=0.0.13",
+    "earl-mocha": ">=0.0.3",
+    "earlgrey": "^0.1.0",
     "mocha": "^2.2.1",
-    "quaint": ">=0.0.15",
-    "earl-mocha": ">=0.0.3"
+    "quaint": ">=0.0.15"
   },
   "scripts": {
     "refresh": "earl compile -5vso lib/ src/",

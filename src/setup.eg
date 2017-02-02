@@ -1,6 +1,5 @@
 
 require:
-   inquirer-promise as inq
    chalk
 
 
