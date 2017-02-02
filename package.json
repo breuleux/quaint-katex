@@ -1,7 +1,7 @@
 {
   "name": "quaint-katex",
   "description": "Katex support for Quaint",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "format": "cjs",
   "repository": {
     "type": "git",
